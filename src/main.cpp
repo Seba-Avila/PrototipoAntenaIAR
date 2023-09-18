@@ -1,20 +1,16 @@
 #include <Arduino.h>
 #include <Servo.h>
 
-int cen;
-int dec;
-int uni;
+
 int gradoB;
 int gradoS;
-char cache;
 int flag=0;
 String receivedData = "";
 
 Servo servoBase;
 Servo servoSup;
 
-void LimpiarMenu();
-/*void Grados();*/
+
 void Comunicacion();
 
 void setup(){
@@ -26,7 +22,7 @@ void setup(){
   servoBase.write(0);   // Iniciamos el servo base en 0 
   servoSup.write(0);    // Iniciamos el servo superior en 0 
 
-  LimpiarMenu();
+
   Serial.println("Bienvenido\n\n");
 
   delay(3000);
@@ -80,38 +76,5 @@ void Comunicacion(){
   if(gradoB>180){
     gradoB=gradoB-180;
     gradoS=180-gradoS;
-  }
-}
-
-/*void Grados(){
-  LimpiarMenu();
-  Serial.println("Ingrese valores de azimut (por favor, en 3 cifras): ");
-  
-  while(Serial.available() < 3){
-    delay(3000);
-    Serial.println("Esperando...");
-    Serial.println((int) Serial.available());
-  }
-  
-  gradoB=Serial.parseInt();
-  cache=Serial.read();
-  cache=Serial.read();
-  Serial.println(gradoB);
-
-  Serial.println("Ingrese valores de altitud (por favor, en 3 cifras): ");
-  while(Serial.available() < 3){
-    delay(3000);
-    Serial.println("Esperan2...");
-    Serial.println((int) Serial.available());
-  }
-  gradoS=Serial.parseInt();
-  cache=Serial.read();
-  cache=Serial.read();
-  Serial.println(gradoS);
-}*/
-
-void LimpiarMenu(){
-  for(int i=0; i<18; i++){
-    Serial.println("\n");
   }
 }
