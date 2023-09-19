@@ -34,19 +34,20 @@ void loop(){
   servoBase.write(gradoB);
   servoSup.write(gradoS);
   
-  Serial.print("Acimut: ");
+  Serial.print("Grado Servo Acimut: ");
   Serial.println(gradoB);
-  Serial.print("Altitud: ");
+  Serial.print("Grado Servo Altitud: ");
   Serial.println(gradoS);
   Comunicacion();
 }
 
 void Comunicacion(){
   flag=1;
+  Serial.println("Ingrese valor acimut (0° a 360°):");
   while(flag==1){
-    Serial.println("Ingrese valor acimut (0° a 360°):");
       if(Serial.available()){
         char receivedChar = Serial.read();
+        Serial.print(receivedChar);
 
         if (receivedChar == '\n'){
           flag = 0;
@@ -58,10 +59,11 @@ void Comunicacion(){
   gradoB= receivedData.toInt();
   receivedData = "";
   flag=1;
+  Serial.println("Ingrese valor altitud (0° a 90°):");
   while(flag==1){
-    Serial.println("Ingrese valor altitud (0° a 90°):");
       if(Serial.available()){
         char receivedChar = Serial.read();
+        Serial.print(receivedChar);
 
         if (receivedChar == '\n'){
           flag = 0;
